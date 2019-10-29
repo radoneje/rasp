@@ -8,6 +8,8 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+const {spawn} = require('child_process');
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -39,7 +41,28 @@ app.use(function(err, req, res, next) {
 });
 
 app.listen(8080, function () {
-  console.log("server liste 8080")
+  console.log("server liste 8080");
+  var screen = spawn("xvfb-run", [
+      "--server-num", "97",
+      "-s","\"-ac -screen 0, 1920x1080x24+32\"",
+      "firefox","http://localhost"
+  ]);
+  spawn("/usr/bin/ffmpeg", [
+    "-f", "x11grab",
+    "-video_size", "1920x1080",
+    "-i", ":98.7",
+    "-codec:v", "libx264",
+    '-r 30', "-preset", "ultrafast",
+    "-y", "/var/www/rasp/public/1.mp4",
+    "-bsf:v", "h264_mp4toannexb",
+    "-bufsize", "700k",
+    "-f", "rtp_mpegts",
+    "rtp://236.0.0.1:" + 1000
+  ])
+  var infoCoder;
+  setTimeout(()=>{
+
+  },2000)
 })
 
 module.exports = app;
