@@ -63,8 +63,8 @@ app.listen(8080, function () {
           "-video_size", "1920x1080",
           "-i", ":97.0",
           "-c:v", "libx264",
+          "-an",
           '-r', '30', "-preset", "ultrafast",
-          "-y", "/var/www/rasp/public/1.mp4",
           "-bsf:v", "h264_mp4toannexb",
           "-f", "rtp_mpegts",
           "rtp://236.0.0.1:" + 1000
