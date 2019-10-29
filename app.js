@@ -43,7 +43,7 @@ app.use(function(err, req, res, next) {
 app.listen(8080, function () {
   console.log("server liste 8080");
 
-  var screen = spawn("xvfb-run", [
+  var screen = spawn("/usr/bin/xvfb-run", [
       "--server-num", "97",
       "-s","\"-ac -screen 0, 1920x1080x24+32\"",
       "firefox","http://localhost"
@@ -62,7 +62,7 @@ app.listen(8080, function () {
           "-video_size", "1920x1080",
           "-i", ":98.7",
           "-codec:v", "libx264",
-          '-r 30', "-preset", "ultrafast",
+          '-r', '30', "-preset", "ultrafast",
           "-y", "/var/www/rasp/public/1.mp4",
           "-bsf:v", "h264_mp4toannexb",
           "-bufsize", "700k",
