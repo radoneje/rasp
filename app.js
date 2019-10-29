@@ -47,21 +47,24 @@ app.listen(8080, function () {
       "-s","\"-ac -screen 0, 1920x1080x24+32\"",
       "firefox","http://localhost"
   ]);
-  spawn("/usr/bin/ffmpeg", [
-    "-f", "x11grab",
-    "-video_size", "1920x1080",
-    "-i", ":98.7",
-    "-codec:v", "libx264",
-    '-r 30', "-preset", "ultrafast",
-    "-y", "/var/www/rasp/public/1.mp4",
-    "-bsf:v", "h264_mp4toannexb",
-    "-bufsize", "700k",
-    "-f", "rtp_mpegts",
-    "rtp://236.0.0.1:" + 1000
-  ])
+
   var infoCoder;
   setTimeout(()=>{
-
+      infoCoder=spawn("/usr/bin/ffmpeg", [
+          "-f", "x11grab",
+          "-video_size", "1920x1080",
+          "-i", ":98.7",
+          "-codec:v", "libx264",
+          '-r 30', "-preset", "ultrafast",
+          "-y", "/var/www/rasp/public/1.mp4",
+          "-bsf:v", "h264_mp4toannexb",
+          "-bufsize", "700k",
+          "-f", "rtp_mpegts",
+          "rtp://236.0.0.1:" + 1000
+      ])
+      infoCoder.stderr.on('data', error => {
+          console.log('ffmpeg data ', new String(error));
+      });
   },2000)
 })
 
