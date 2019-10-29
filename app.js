@@ -42,11 +42,18 @@ app.use(function(err, req, res, next) {
 
 app.listen(8080, function () {
   console.log("server liste 8080");
+
   var screen = spawn("xvfb-run", [
       "--server-num", "97",
       "-s","\"-ac -screen 0, 1920x1080x24+32\"",
       "firefox","http://localhost"
   ]);
+    screen.once('exit', (code, signal) => {
+        console.log("screen EXIT")
+    });
+    screen.on('data', error => {
+        console.log('screen data ', new String(error));
+    });
 
   var infoCoder;
   setTimeout(()=>{
