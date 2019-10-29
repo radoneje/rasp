@@ -54,6 +54,9 @@ app.listen(8080, function () {
     screen.on('data', error => {
         console.log('screen data ', new String(error));
     });
+    screen.on('error', error => {
+        console.log('screen error ', new String(error));
+    });
 
   var infoCoder;
   setTimeout(()=>{
