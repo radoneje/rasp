@@ -66,7 +66,6 @@ app.listen(8080, function () {
           '-r', '30', "-preset", "ultrafast",
           "-y", "/var/www/rasp/public/1.mp4",
           "-bsf:v", "h264_mp4toannexb",
-          "-bufsize", "700k",
           "-f", "rtp_mpegts",
           "rtp://236.0.0.1:" + 1000
       ])
