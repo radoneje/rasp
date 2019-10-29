@@ -49,7 +49,7 @@ app.listen(8080, function () {
       "firefox","http://localhost"
   ]);
     screen.once('exit', (code, signal) => {
-        console.log("screen EXIT")
+        console.log("screen EXIT",code, signal)
     });
     screen.on('data', error => {
         console.log('screen data ', new String(error));
