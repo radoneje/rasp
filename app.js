@@ -63,7 +63,7 @@ app.listen(8080, function () {
       infoCoder=spawn("/usr/bin/ffmpeg", [
           "-f", "x11grab",
           "-video_size", "1920x1080",
-          "-i", ":98.7",
+          "-i", ":97.0",
           "-codec:v", "libx264",
           '-r', '30', "-preset", "ultrafast",
           "-y", "/var/www/rasp/public/1.mp4",
