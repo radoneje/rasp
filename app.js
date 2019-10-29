@@ -43,10 +43,8 @@ app.use(function(err, req, res, next) {
 app.listen(8080, function () {
   console.log("server liste 8080");
 
-  var screen = spawn("/usr/bin/xvfb-run", [
-      "--server-num", "97",
-      "-s","\"-ac -screen 0, 1920x1080x24+32\"",
-      "firefox","http://localhost"
+  var screen = spawn("/usr/bin/infoStart.sh", [
+      "97", "97"
   ]);
     screen.once('exit', (code, signal) => {
         console.log("screen EXIT",code, signal)
@@ -63,7 +61,7 @@ app.listen(8080, function () {
       infoCoder=spawn("/usr/bin/ffmpeg", [
           "-f", "x11grab",
           "-video_size", "1920x1080",
-          "-i", ":97.0",
+          "-i", ":98.0",
           "-codec:v", "libx264",
           '-r', '30', "-preset", "ultrafast",
           "-y", "/var/www/rasp/public/1.mp4",
