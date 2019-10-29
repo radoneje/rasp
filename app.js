@@ -62,7 +62,7 @@ app.listen(8080, function () {
           "-f", "x11grab",
           "-video_size", "1920x1080",
           "-i", ":97.0",
-          "-codec:v", "libx264",
+          "-c:v", "libx264",
           '-r', '30', "-preset", "ultrafast",
           "-y", "/var/www/rasp/public/1.mp4",
           "-bsf:v", "h264_mp4toannexb",
