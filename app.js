@@ -51,10 +51,10 @@ app.listen(8080, function () {
     screen.once('exit', (code, signal) => {
         console.log("screen EXIT",code, signal)
     });
-    screen.on('data', error => {
+    screen.stdout.on('data', error => {
         console.log('screen data ', new String(error));
     });
-    screen.on('error', error => {
+    screen.stderr.on('error', error => {
         console.log('screen error ', new String(error));
     });
 
