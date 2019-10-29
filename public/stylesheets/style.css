@@ -1,0 +1,20 @@
+@keyframes rotate {
+  0%{transform: rotateZ(0deg);}
+  50%{transform: rotateZ(180deg);}
+  100%{transform: rotateZ(360deg);}
+
+}
+.content{
+  width: 1920px;
+  height: 1080px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:#330033;
+}
+.clock{
+  color:white;
+  font-size: 200px;
+  animation: rotate 5s infinite;
+  transition: all 2s linear;
+}

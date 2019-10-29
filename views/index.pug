@@ -1,0 +1,17 @@
+doctype html
+html
+  head
+
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    div(class="content")
+      div(class="clock" id="clock") 14:38
+
+  script.
+    var e=document.getElementById("clock")
+    st();
+    function st() {
+      var d= new Date();
+      e.innerText=d.getHours()+":"+d.getMinutes()+":"+d.getSeconds()+"."+d.getMilliseconds();
+      setTimeout(st,200)
+    }
