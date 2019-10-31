@@ -118,9 +118,9 @@ var app = new Vue({
             item.dateStart = moment(item.dateStart).set("minute", val.m).toDate();
             item.dateStart = moment(item.dateStart).set("hour", val.h).toDate();
 
-            item.dateEnd = item.dateStart;
+           /* item.dateEnd = item.dateStart;
             item.dateEnd = moment(item.dateEnd).set("minute", val.m).toDate();
-            item.dateEnd = moment(item.dateEnd).set("hour", val.h + 1).toDate();
+            item.dateEnd = moment(item.dateEnd).set("hour", val.h + 1).toDate();*/
 
             await this.pgmChange(item, e)
         },
