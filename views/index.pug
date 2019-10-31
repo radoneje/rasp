@@ -30,7 +30,7 @@ html
               div(v-if="!item.eng")
                 div(class="iRaspTime" ) {{moment(item.dateStart).format('HH:mm')}} &#8211; {{moment(item.dateEnd).format('HH:mm')}}
                 div(class="iRaspHall") {{item.room}}
-                div(class="iRaspLine")
+                div(class="iRaspLine" v-if="item.room && item.room.length>0")
                 div(class="iRaspType" ) {{item.eventType}}
                 div(class="iRaspTitle" ) {{item.title}}
                 div(class="iRaspDescr" )
