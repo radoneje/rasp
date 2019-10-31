@@ -67,8 +67,8 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.listen(8080, function () {
-  console.log("server liste 8080");
+app.listen(9080, function () {
+  console.log("server liste 9080");
    /* try {
         var screen = spawn("/usr/bin/infoStart.sh", [
             "97", "97"
