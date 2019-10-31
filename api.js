@@ -57,6 +57,7 @@ router.get('/pgm/', async (req, res, next) =>{
       .from("t_pgm")
       .orderBy("dateStart")
       .where({isDeleted:false})
+  responce=responce.sort((a,b)=>{return moment(a.dateStart).unix()-moment(b.dateStart).unix()})
   res.json(responce);
 });
 
