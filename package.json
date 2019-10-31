@@ -15,6 +15,7 @@
     "express-session": "^1.17.0",
     "http-errors": "~1.6.3",
     "knex": "^0.20.1",
+    "moment": "^2.24.0",
     "morgan": "~1.9.1",
     "pug": "2.0.0-beta11",
     "vuejs-datepicker": "^1.6.2"

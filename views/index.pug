@@ -40,7 +40,7 @@ html
               div( v-else)
                 div(class="iRaspTime" ) {{moment(item.dateStart).format('HH:mm')}} &#8211; {{moment(item.dateEnd).format('HH:mm')}}
                 div(class="iRaspHall") {{item.roomEng}}
-                div(class="iRaspLine")
+                div(class="iRaspLine" v-if="item.room && item.room.length>0")
                 div(class="iRaspType" ) {{item.eventTypeEng}}
                 div(class="iRaspTitle" ) {{item.titleEng}}
                 div(class="iRaspDescr" )
