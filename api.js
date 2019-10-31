@@ -55,7 +55,7 @@ router.get('/pgm/', async (req, res, next) =>{
   var responce=await req.knex
       .select("*")
       .from("t_pgm")
-      .orderBy("dateStart")
+     // .orderBy("dateStart")
       .where({isDeleted:false})
   responce=responce.sort((a,b)=>{console.log(moment(a.dateStart).unix(), moment(b.dateStart).unix()); return moment(a.dateStart).unix()-moment(b.dateStart).unix()})
   res.json(responce);
