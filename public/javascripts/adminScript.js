@@ -109,14 +109,13 @@ var app = new Vue({
         pgmDateEndChange: async function (item, e) {
             var val = JSON.parse(e.target.value)
             item.dateEnd = moment(item.dateEnd).set("minute", val.m).toDate();
-            item.dateEnd = moment(item.dateEnd).set("hour", val.h).toDate();
-            (new Date()).getMinutes()
+            item.dateEnd = moment(item.dateEnd).set("hour", val.h-1).toDate();
             await this.pgmChange(item, e)
         },
         pgmDateStartChange: async function (item, e) {
             var val = JSON.parse(e.target.value)
             item.dateStart = moment(item.dateStart).set("minute", val.m).toDate();
-            item.dateStart = moment(item.dateStart).set("hour", val.h).toDate();
+            item.dateStart = moment(item.dateStart).set("hour", val.h-1).toDate();
 
            /* item.dateEnd = item.dateStart;
             item.dateEnd = moment(item.dateEnd).set("minute", val.m).toDate();
