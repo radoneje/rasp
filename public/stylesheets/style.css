@@ -375,10 +375,10 @@ textarea.txtInput{
 .iRaspDescr{
   position: fixed;
   top: 598px;
-  left: 162px;
+  left: 171px;
   font-size: 67px;
   color: white;
-  transform: scaleX(0.9);
+ /* transform: scaleX(0.9);*/
   font-weight: bold;
 }
 .iRaspDescrString{
