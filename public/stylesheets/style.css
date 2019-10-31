@@ -4,24 +4,388 @@
   100%{transform: rotateZ(360deg);}
 
 }
+@font-face {
+  font-family: 'FedraCaps';
+  src: url('/fonts/SBSansInterface-Caps.eot');
+  src: url('/fonts/SBSansInterface-Caps.eot?#iefix') format('embedded-opentype'),
+  url('/fonts/SBSansInterface-Caps.woff2') format('woff2'),
+  url('/fonts/SBSansInterface-Caps.woff') format('woff'),
+  url('SBSansInterface-Caps.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Fedra';
+  src: url('/fonts/SBSansInterface-Regular.eot');
+  src: url('/fonts/SBSansInterface-Regular.eot?#iefix') format('embedded-opentype'),
+  url('/fonts/SBSansInterface-Regular.woff2') format('woff2'),
+  url('/fonts/SBSansInterface-Regular.woff') format('woff'),
+  url('/fonts/SBSansInterface-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Fedra';
+  src: url('/fonts/SBSansInterface-Light.eot');
+  src: url('/fonts/SBSansInterface-Light.eot?#iefix') format('embedded-opentype'),
+  url('/fonts/SBSansInterface-Light.woff2') format('woff2'),
+  url('/fonts/SBSansInterface-Light.woff') format('woff'),
+  url('/fonts/SBSansInterface-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Fedra';
+  src: url('/fonts/SBSansInterface-Semibold.eot');
+  src: url('/fonts/SBSansInterface-Semibold.eot?#iefix') format('embedded-opentype'),
+  url('/fonts/SBSansInterface-Semibold.woff2') format('woff2'),
+  url('/fonts/SBSansInterface-Semibold.woff') format('woff'),
+  url('/fonts/SBSansInterface-Semibold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Aeroport';
+  src: url('/fonts/Aeroport.eot');
+  src: url('/fonts/Aeroport.eot?#iefix') format('embedded-opentype'),
+  url('/fonts/Aeroport.woff2') format('woff2'),
+  url('/fonts/Aeroport.woff') format('woff'),
+  url('/fonts/Aeroport.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Aeroport';
+  src: url('/fonts/Aeroport-Bold.eot');
+  src: url('/fonts/Aeroport-Bold.eot?#iefix') format('embedded-opentype'),
+  url('/fonts/Aeroport-Bold.woff2') format('woff2'),
+  url('/fonts/Aeroport-Bold.woff') format('woff'),
+  url('/fonts/Aeroport-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
 body{
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
-  overflow:hidden
+  overflow:hidden;
+  font-family: Fedra;
+  font-size: 12px;
+  letter-spacing: 0;
 }
 .content{
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
   width: 1920px;
   height: 1080px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background:#330033;
+/*  background:#330033;*/
+}
+.background{
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 1920px;
+  height: 1080px;
+
+}
+.background{
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 1920px;
+  height: 1080px;
+
+}
+.backgroundBox{
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.background video{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
+  background-size: cover;
+  overflow: hidden;
+
+}
+.backgroundPush{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 619px;
+  height: 100%;
+  background: #193345;
+}
+.backgroundPush2{
+  position: absolute;
+  left: 0;
+  top: 80%;
+  width: 54%;
+  height: 20%;
+  background: #193345;
+}
+.backgroundPush3{
+  position: absolute;
+  left: 0;
+  top: 51%;
+  width: 62%;
+  height: 29%;
+  background: #193345;
 }
 .clock{
   color:white;
   font-size: 200px;
   animation: rotate 5s infinite;
   transition: all 2s linear;
+}
+.loginWr{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  background: #0e0956;
+}
+.loginBox{
+  width: 330px;
+  background: white;
+  padding: 30px;
+  border-radius: 5PX;
+
+}
+.loginBox input{
+  border:1px solid #eee;
+  padding: 4px;
+  margin: 4px 0;
+  width: calc(100% - 10px);
+}
+.menu{
+margin:10px;
+  display: flex;
+  justify-content: flex-end;
+  border-bottom: 1px solid #333;
+}
+.menuItem{
+  display: inline-block;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+.menuItem.active{
+  color: #00D900;
+}
+.sect{
+  margin: 10px;
+}
+.sectTitle{
+  font-size: 16px;
+  margin: 20px 0;
+}
+.sectItemAdd{
+  margin: 20px 0;
+}
+.txtInput{
+  padding: 10px;
+  width: calc(100% - 20px);
+  border:1px solid #eee;
+}
+.txtInput:focus{
+  outline: none !important;
+}
+.label{
+  font-size: 9px;
+  color:#888;
+}
+.row{
+  display: flex;
+  flex-flow: row wrap;
+  margin-top:10px ;
+}
+.items{
+
+}
+.item{
+}
+.btn{
+  border: 1px solid #eee;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top:10px ;
+  padding: 5px;
+}
+.btn-danger{
+  color:#ffffff;
+  background: #ff007c;
+}
+.vdp-datepicker{
+  display: inline-block;
+}
+.arrowUp{
+  width: 20px;
+  height: 20px;
+  background: url(/images/icon-arrow-left.svg);
+  transform: rotateZ(90deg);
+  cursor: pointer;
+}
+.arrowDown{
+  width: 20px;
+  height: 20px;
+  background: url(/images/icon-arrow-left.svg);
+  transform: rotateZ(-90deg);
+  cursor: pointer;
+}
+.iRaspTime{
+  position: fixed;
+  top: 312px;
+  left: 171px;
+  height: 100px;
+  color: white;
+  font-size: 95px;
+  font-weight: bold;
+
+}
+.iRasp{
+  color: white;
+  font-size: 64px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.iRaspBox{
+  padding: 0 60px;
+  margin-top: 50px;
+}
+.iRaspBox div{
+  margin-top:40px
+}
+
+.iRaspHall{
+  position: fixed;
+  top: 168px;
+  left: 171px;
+  font-size: 40px;
+  color: white;
+  /*transform: scaleX(0.9);*/
+  color:#00c61d;;
+}
+.iRaspLine{
+  position: fixed;
+  top: 270px;
+  width: 115px;
+  left: 171px;
+  height: 4px;
+  background: #00c61d;
+}
+.iRaspTitle{
+  position: fixed;
+  top: 486px;
+  left: 171px;
+  font-size: 67px;
+  color: white;
+ // transform: scaleX(0.9);
+  color: #00c61d;
+  font-weight: bold;
+  width: 1600px;
+}
+.iRaspType{
+  position: fixed;
+  top: 428px;
+  left: 171px;
+  font-size: 41px;
+  color: white;
+  font-weight: normal;
+}
+.iRaspDateBox{
+  margin-top: 49px;
+  margin-left: 390px;
+  display: flex;
+}
+.iRaspDate{
+  font-size: 70px;
+}
+.iRaspDateText{
+  line-height: 1.25;
+  font-size: 31px;
+  padding-top: 7px;
+  padding-left: 48px;
+  text-transform: uppercase;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {
+  opacity: 0;
+  transition: opacity .5s;
+}
+.iVideo {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.iVideo video{
+
+  width: 100%;
+  height: 100%;
+}
+.rundown{
+  transform: scale(0.3);
+  margin-top: -280px;
+  margin-left: -600px;
+}
+.logo{
+  width: 1920px;
+  height: 1080px;
+  position: fixed;
+  z-index: 10000;
+  background: url(/images/logo.png);
+}
+.test{
+  width: 1920px;
+  height: 1080px;
+  position: fixed;
+  z-index: 90000;
+  background: url(/images/logo.png);
+  opacity: .3;
+}
+.aeroflot{
+  font-family: Aeroport;
+}
+textarea.txtInput{
+  height: 6em;
+  resize: none;
+}
+.iRaspDescr{
+  position: fixed;
+  top: 598px;
+  left: 162px;
+  font-size: 67px;
+  color: white;
+  transform: scaleX(0.9);
+  font-weight: bold;
+}
+.iRaspDescrString{
+  margin-top: 0!important;
+  margin-top: 0!important;
+  font-size: 41px;
+  line-height: 0.98;
+  color: white;
+  font-weight: normal;
 }

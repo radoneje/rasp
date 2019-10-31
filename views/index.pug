@@ -3,15 +3,53 @@ html
   head
 
     link(rel='stylesheet', href='/stylesheets/style.css')
-  body
-    div(class="content")
-      div(class="clock" id="clock") 14:38
+    script(src="/javascripts/moment.min.js")
+    script(src="/javascripts/axios.js")
+    script(src="/javascripts/vue.js")
+  body(class="aeroflot")
+    div(class="logo")
+    //img(class="test" src="/images/test.jpg")
+    div(class="background")
+      div(class="backgroundBox")
+        video(muted autoplay loop src="/images/bg.mp4")
+        div(class="backgroundPush")
+        div(class="backgroundPush2")
+        div(class="backgroundPush3")
+    div(class="content" id="app" style="display: block;")
 
-  script.
-    var e=document.getElementById("clock")
-    st();
-    function st() {
-      var d= new Date();
-      e.innerText=d.getHours()+":"+d.getMinutes()+":"+d.getSeconds()+"."+d.getMilliseconds();
-      setTimeout(st,200)
-    }
+        div(class="iRasp" :key="item.id" v-for="item in pgm")
+          div(class="iRaspDateBox")
+            div(class="iRaspDate")
+              span {{head.time}}
+            div(class="iRaspDateText" )
+              div(style="color:#2caa65") {{head.title}}
+              div {{head.subTitle}}
+
+          transition(name="fade" mode="out-in")
+            div(class="iRaspBox" v-show="item.isActive==true" )
+              div(v-if="!item.eng")
+                div(class="iRaspTime" ) {{moment(item.dateStart).format('HH:mm')}} &#8211; {{moment(item.dateEnd).format('HH:mm')}}
+                div(class="iRaspHall") {{item.room}}
+                div(class="iRaspLine")
+                div(class="iRaspType" ) {{item.eventType}}
+                div(class="iRaspTitle" ) {{item.title}}
+                  div(class="iRaspDescrString" v-for="subItem in item.descrEngArr" ) {{subItem}}
+                //div(class="iRaspDescr" )
+                  div(class="iRaspDescrString" v-for="subItem in item.descrEngArr" ) {{subItem}}
+              div( v-else)
+                div(class="iRaspTime" ) {{moment(item.dateStart).format('HH:mm')}} &#8211; {{moment(item.dateEnd).format('HH:mm')}}
+                div(class="iRaspHall") {{item.roomEng}}
+                div(class="iRaspLine")
+                div(class="iRaspType" ) {{item.eventTypeEng}}
+                div(class="iRaspTitle" ) {{item.titleEng}}
+                div(class="iRaspDescr" )
+                  div(class="iRaspDescrString" v-for="subItem in item.descrEngArr" ) {{subItem}}
+        transition(name="fade" mode="out-in")
+          div(v-show="videoShow")
+            div(class="iVideo" :key="item.id" v-for="item in videos")
+              video(:src="item.url"  muted preload="auto" :id="'video_'+item.id" v-show="item.isActive")
+    // div(class="clock" id="clock") 14:38
+    script(src="/javascripts/indexScript.js")
+
+
+

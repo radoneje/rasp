@@ -1,0 +1,24 @@
+div(class="items")
+    div(class="item" v-for="item in rooms")
+        div(class="row")
+            div(style="width: 50%;")
+                div(class="label") Русское название
+                input(type="text" class="txtInput" v-model="item.title" v-on:keydown="keyDownRoom(item, $event)" v-on:change="roomChange(item, $event)" )
+            div(style="width: 50%;")
+                div(class="label") Eng Title
+                input(type="text" class="txtInput" v-model="item.titleEng" v-on:keydown="keyDownRoom(item, $event)" v-on:change="roomChange(item, $event)" )
+        div(class="row")
+            div(style="width: 50%;")
+                div(class="label") Русское описание
+                input(type="text" class="txtInput" v-model="item.descr" v-on:keydown="keyDownRoom(item, $event)" v-on:change="roomChange(item, $event)" )
+            div(style="width: 50%;")
+                div(class="label") Eng description
+                input(type="text" class="txtInput" v-model="item.descrEng" v-on:keydown="keyDownRoom(item, $event)" v-on:change="roomChange(item, $event)" )
+        div(style="display: flex;justify-content: flex-end;")
+            input(type="button" class="btn btn-danger" value="Удалить" @click="deleteRoom(item)" )
+div(class="sectItemAdd")
+    input(type="text" class="txtInput" v-model="newRoomTitle" placeholder="введите название, что бы добавить" v-on:keydown="keyDownRoomAdd($event)" )
+
+
+
+

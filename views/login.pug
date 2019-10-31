@@ -1,0 +1,12 @@
+extends layout
+
+block content
+    div(class="loginWr")
+        div(class="loginBox")
+            form(method="POST" action="/login")
+                div username
+                input(type="text" name="login" value=login )
+                div password
+                input(type="password" name="password")
+                div &nbsp #{message}
+                input(type="submit" value="LogIn")

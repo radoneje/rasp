@@ -3,14 +3,47 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "build": "rm -rf dist && webpack --mode development",
+    "start": "node app.js --exec  webpack --mode development --watch"
   },
   "dependencies": {
-    "cookie-parser": "~1.4.4",
+    "body-parser": "^1.19.0",
+    "connect-pg-simple": "^6.0.1",
+    "cookie-parser": "^1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
+    "express-session": "^1.17.0",
     "http-errors": "~1.6.3",
+    "knex": "^0.20.1",
     "morgan": "~1.9.1",
-    "pug": "2.0.0-beta11"
-  }
+    "pug": "2.0.0-beta11",
+    "vuejs-datepicker": "^1.6.2"
+  },
+  "main": "app.js",
+  "devDependencies": {
+    "@babel/core": "^7.6.4",
+    "@babel/preset-env": "^7.6.3",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.0.6",
+    "babel-preset-env": "^1.7.0",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "vuejs-timepicker": "git+https://github.com/xxRockOnxx/vue2-timepicker.git",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.9",
+    "webpack-node-externals": "^1.7.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/radoneje/rasp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/radoneje/rasp/issues"
+  },
+  "homepage": "https://github.com/radoneje/rasp#readme",
+  "description": ""
 }

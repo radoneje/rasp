@@ -1,0 +1,18 @@
+div(class="items")
+    div(class="item" v-for="item in stb")
+        div(class="row")
+            div(style="width: calc( 100px);display: flex; justify-content: center;align-items: center;")
+                div(style="font-size:18px; margin-right:10px") {{item.sort/10}}
+                div(@click="stbUp(item)" style="font-size:18px; margin-right:10px" class="arrowUp")
+                div(@click="stbDown(item)" style="font-size:18px; margin-right:10px" class="arrowDown")
+
+            div(style="width: calc(50% - 100px);")
+                div(class="label") Название канала
+                input(type="text" class="txtInput" v-model="item.title" v-on:keydown="keyDownStb(item, $event)" v-on:change="stbChange(item, $event)" )
+            div(style="width: calc(50% - 100px);")
+                div(class="label") URL потока
+                input(type="text" class="txtInput" v-model="item.url" v-on:keydown="keyDownStb(item, $event)" v-on:change="stbChange(item, $event)" )
+        div(style="display: flex;justify-content: flex-end;")
+            input(type="button" class="btn btn-danger" value="Удалить" @click="deleteStb(item)" )
+div(class="sectItemAdd")
+        input(type="text" class="txtInput" v-model="stbTitle" placeholder="введите название, что бы добавить" v-on:keydown="keyDownStbAdd($event)" )
