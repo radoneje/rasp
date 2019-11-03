@@ -31,5 +31,8 @@ router.post("/login", (req, res, next)=>{
 router.get('/admin', checkLogin, function(req, res, next) {
   res.render('admin', { title: 'Express' });
 });
+router.get('/pgm', function(req, res, next) {
+  res.render('pgm', { title: 'programm' });
+});
 
 module.exports = router;

@@ -7,6 +7,7 @@ var app = new Vue({
         }, {id: 3, title: "Плейлист канала"}, {id: 5, title: "Плейлист приставки"}],
         newRoomTitle: "",
         newPgmTitle: "",
+        pgmEdit:null,
         stbTitle: "",
         videoTitle:"",
         rooms: [],
@@ -14,7 +15,8 @@ var app = new Vue({
         stb: [],
         videos:[],
         moment: moment,
-        timeEnd: '00:00'
+        timeEnd: '00:00',
+        opacity:0
     },
     components: {
         vuejsDatepicker
@@ -153,6 +155,7 @@ var app = new Vue({
             this.newPgmTitle = "";
             e.target.blur();
             _this.pgm.push(data.data)
+            _this.pgmEdit=data.data;
         },
         keyDownPgmAdd: function (e) {
             if (e.keyCode == 13)
@@ -202,6 +205,7 @@ var app = new Vue({
         this.stb = data.data;
         data = await axios.get("/api/videos");
         this.videos = data.data;
+        this.opacity=1;
     }
 });
 

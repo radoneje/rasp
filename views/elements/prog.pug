@@ -1,69 +1,78 @@
 div(class="items")
         div(class="item" v-for="item in pgm")
-            div(class="row")
-                div(style="width: 300px;")
-                    div(class="label") Дата начала
-                    div
-                        vuejs-datepicker(v-model="item.dateStart" :format="'dd MMMM yyyy'" :monday-first="true" :selected="pgmChange(item)" ) &nbsp;
-                        span(style="cursor:pointer")
-                                select(v-on:change="pgmDateStartChange(item, $event)")
+            div(class="pgmRow" @click="pgmEdit=item")
+                span {{moment(item.dateStart).format("HH:mm DD MMM")}} - {{moment(item.dateEnd).format("HH:mm")}}
+                span(style="font-weight:bold") &nbsp;&nbsp;
+                    select(v-model="item.roomId" v-on:change="pgmChange(item, $event)")
+                        option(v-for="room in rooms" :value="room.id") {{room.title}}
+                span(style="font-weight:bold") &nbsp;&nbsp;&nbsp;{{item.title}}
+                span &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    input(type="button" class="btn btn-danger" value="Удалить" @click="deletepgm(item)")
+        div(class="pgmEdit" v-if="pgmEdit")
+            div(class="pgmEditWr" )
+                div(class="pgmEditTitle" ) {{pgmEdit.title}}
+                    input(type="button" class="btn" style="float:right" value="Закрыть" @click="pgmEdit=null" )
+                div(class="row")
+                    div(style="width: 300px;")
+                        div(class="label") Дата начала
+                        div
+                            vuejs-datepicker(v-model="pgmEdit.dateStart" :format="'dd MMMM yyyy'" :monday-first="true" :selected="pgmChange(pgmEdit)" ) &nbsp;
+                            span(style="cursor:pointer")
+                                select(v-on:change="pgmDateStartChange(pgmEdit, $event)")
                                     optgroup(v-for="h in 17" )
-                                        option(v-for="i in 4" :value="JSON.stringify({h:h+6, m:(i-1)*15})" v-bind:selected="(h+6-1)==(new Date(item.dateStart)).getHours() && ((i-1)*15)==(new Date(item.dateStart)).getMinutes()") {{padLeft(h+6)}}:{{padLeft((i-1)*15)}}
-                div(style="width: 300px;")
-                    div(class="label") Дата окончания
-                    div
-                        span(style="cursor:pointer")
-                            vuejs-datepicker(v-model="item.dateEnd" :format="'dd MMMM yyyy'" :monday-first="true" :selected="pgmChange(item)" ) &nbsp;
-                        span(style="cursor:pointer")
-                            select(v-on:change="pgmDateEndChange(item, $event)")
-                                optgroup(v-for="h in 17" )
-                                    option(v-for="i in 4" :value="JSON.stringify({h:h+6, m:(i-1)*15})" v-bind:selected="(h+6-1)==(new Date(item.dateEnd)).getHours() && ((i-1)*15)==(new Date(item.dateEnd)).getMinutes()") {{padLeft(h+6)}}:{{padLeft((i-1)*15)}}
+                                        option(v-for="i in 4" :value="JSON.stringify({h:h+6, m:(i-1)*15})" v-bind:selected="(h+6-1)==(new Date(pgmEdit.dateStart)).getHours() && ((i-1)*15)==(new Date(pgmEdit.dateStart)).getMinutes()") {{padLeft(h+6)}}:{{padLeft((i-1)*15)}}
+                    div(style="width: 300px;")
+                        div(class="label") Дата окончания
+                        div
+                            span(style="cursor:pointer")
+                                vuejs-datepicker(v-model="pgmEdit.dateEnd" :format="'dd MMMM yyyy'" :monday-first="true" :selected="pgmChange(pgmEdit)" ) &nbsp;
+                            span(style="cursor:pointer")
+                                select(v-on:change="pgmDateEndChange(pgmEdit, $event)")
+                                    optgroup(v-for="h in 17" )
+                                        option(v-for="i in 4" :value="JSON.stringify({h:h+6, m:(i-1)*15})" v-bind:selected="(h+6-1)==(new Date(pgmEdit.dateEnd)).getHours() && ((i-1)*15)==(new Date(pgmEdit.dateEnd)).getMinutes()") {{padLeft(h+6)}}:{{padLeft((i-1)*15)}}
+                    div(style="width: 200px;")
+                        div(class="label")  Помещение
+                        div
+                            select(v-model="pgmEdit.roomId" v-on:change="pgmChange(pgmEdit, $event)")
+                                option(v-for="room in rooms" :value="room.id") {{room.title}}
+                div(class="row")
+                    div(style="width: 20%;")
+                        div(class="label") Тип
+                        input(type="text" class="txtInput" v-model="pgmEdit.eventType" v-on:keydown="keyDownpgm(pgmEdit, $event)" v-on:change="pgmChange(pgmEdit, $event)" )
+                    div(style="width: 20%;")
+                        div(class="label") Eng type
+                        input(type="text" class="txtInput" v-model="pgmEdit.eventTypeEng" v-on:keydown="keyDownpgm(pgmEdit, $event)" v-on:change="pgmChange(pgmEdit, $event)" )
+                div(class="row")
+                    div(style="width: 50%;")
+                        div(class="label") Русское название
+                        input(type="text" class="txtInput" v-model="pgmEdit.title" v-on:keydown="keyDownpgm(pgmEdit, $event)" v-on:change="pgmChange(pgmEdit, $event)" )
+                    div(style="width: 50%;")
+                        div(class="label") Eng Title
+                        input(type="text" class="txtInput" v-model="pgmEdit.titleEng" v-on:keydown="keyDownpgm(pgmEdit, $event)" v-on:change="pgmChange(pgmEdit, $event)" )
+                div(class="row")
+                    div(style="width: 50%;")
+                        div(class="label") Русское описание
+                        textarea(type="text" class="txtInput" v-model="pgmEdit.descr"  v-on:change="pgmChange(pgmEdit, $event)" )
+                    div(style="width: 50%;")
+                        div(class="label") Eng description
+                        textarea(type="text" class="txtInput" v-model="pgmEdit.descrEng"  v-on:change="pgmChange(pgmEdit, $event)" )
+                div(class="row")
+                    div(style="width: 25%;")
+                        div(class="label") YouTube русский
+                        input(type="text" class="txtInput" v-model="pgmEdit.yt" v-on:keydown="keyDownpgm(pgmEdit, $event)" v-on:change="pgmChange(pgmEdit, $event)" )
+                    div(style="width: 25%;")
+                        div(class="label") YouTube русский ключ
+                        input(type="text" class="txtInput" v-model="pgmEdit.ytKey" v-on:keydown="keyDownpgm(pgmEdit, $event)" v-on:change="pgmChange(pgmEdit, $event)" )
+                    div(style="width: 25%;")
+                        div(class="label") YouTube Eng
+                        input(type="text" class="txtInput" v-model="pgmEdit.ytEng" v-on:keydown="keyDownpgm(pgmEdit, $event)" v-on:change="pgmChange(pgmEdit, $event)" )
+                    div(style="width: 25%;")
+                        div(class="label") YouTube Eng key
+                        input(type="text" class="txtInput" v-model="pgmEdit.ytEngKey" v-on:keydown="keyDownpgm(pgmEdit, $event)" v-on:change="pgmChange(pgmEdit, $event)" )
+                div(class="row")
+                    input(type="button" class="btn" value="Закрыть" @click="pgmEdit=null" )
 
-                        span
 
-                div(style="width: 200px;")
-                    div(class="label")  Помещение
-                    div
-                        select(v-model="item.roomId" v-on:change="pgmChange(item, $event)")
-                            option(v-for="room in rooms" :value="room.id") {{room.title}}
-
-            div(class="row")
-                div(style="width: 20%;")
-                    div(class="label") Тип
-                    input(type="text" class="txtInput" v-model="item.eventType" v-on:keydown="keyDownpgm(item, $event)" v-on:change="pgmChange(item, $event)" )
-                div(style="width: 20%;")
-                    div(class="label") Eng type
-                    input(type="text" class="txtInput" v-model="item.eventTypeEng" v-on:keydown="keyDownpgm(item, $event)" v-on:change="pgmChange(item, $event)" )
-            div(class="row")
-                div(style="width: 50%;")
-                    div(class="label") Русское название
-                    input(type="text" class="txtInput" v-model="item.title" v-on:keydown="keyDownpgm(item, $event)" v-on:change="pgmChange(item, $event)" )
-                div(style="width: 50%;")
-                    div(class="label") Eng Title
-                    input(type="text" class="txtInput" v-model="item.titleEng" v-on:keydown="keyDownpgm(item, $event)" v-on:change="pgmChange(item, $event)" )
-            div(class="row")
-                div(style="width: 50%;")
-                    div(class="label") Русское описание
-                    textarea(type="text" class="txtInput" v-model="item.descr"  v-on:change="pgmChange(item, $event)" )
-                div(style="width: 50%;")
-                    div(class="label") Eng description
-                    textarea(type="text" class="txtInput" v-model="item.descrEng"  v-on:change="pgmChange(item, $event)" )
-            div(class="row")
-                div(style="width: 25%;")
-                    div(class="label") YouTube русский
-                    input(type="text" class="txtInput" v-model="item.yt" v-on:keydown="keyDownpgm(item, $event)" v-on:change="pgmChange(item, $event)" )
-                div(style="width: 25%;")
-                    div(class="label") YouTube русский ключ
-                    input(type="text" class="txtInput" v-model="item.ytKey" v-on:keydown="keyDownpgm(item, $event)" v-on:change="pgmChange(item, $event)" )
-                div(style="width: 25%;")
-                    div(class="label") YouTube Eng
-                    input(type="text" class="txtInput" v-model="item.ytEng" v-on:keydown="keyDownpgm(item, $event)" v-on:change="pgmChange(item, $event)" )
-                div(style="width: 25%;")
-                    div(class="label") YouTube Eng key
-                    input(type="text" class="txtInput" v-model="item.ytEngKey" v-on:keydown="keyDownpgm(item, $event)" v-on:change="pgmChange(item, $event)" )
-
-            div(style="display: flex;justify-content: flex-end;")
-                input(type="button" class="btn btn-danger" value="Удалить" @click="deletepgm(item)" )
 div(class="sectItemAdd")
     input(type="text" class="txtInput" v-model="newPgmTitle" placeholder="введите название, что бы добавить" v-on:keydown="keyDownPgmAdd($event)" )
 

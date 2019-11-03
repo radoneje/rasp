@@ -3,7 +3,7 @@ extends layout
 
 block content
         style body{overflow: inherit}
-        div(id="app")
+        div(id="app" style="opacity:0" v-bind:style="{opacity:opacity}" )
                 div(class="menu")
                         div(class="menuItem" v-for="item in menu" v-bind:class="{active:item.isActive}" @click="menuClick(item)") {{item.title}}
 

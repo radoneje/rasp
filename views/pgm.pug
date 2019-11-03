@@ -1,0 +1,22 @@
+extends layout
+
+block content
+        style body{overflow: inherit}
+        div(id="app" style="opacity:0" v-bind:style="{opacity:opacity}" )
+                div(class="pgmEditTitle" style="margin:20px") ПРОГРАММА МЕРОПРИЯТИЯ
+                div(class="items")
+                        div(class="item" v-for="item in pgm")
+                                div(class="pgmRow")
+                                        span {{moment(item.dateStart).format("HH:mm DD MMM")}} - {{moment(item.dateEnd).format("HH:mm")}}
+                                        span(style="font-weight:bold") &nbsp;&nbsp;
+
+                                        span(style="font-weight:bold") &nbsp;&nbsp;&nbsp;{{item.title}}
+                                        span &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+
+        script(src="/javascripts/moment.min.js")
+        script(src="/javascripts/axios.js")
+        script(src="/javascripts/vue.js")
+        script(src="/javascripts/vuejs-datepicker.js")
+        script(src="/javascripts/pgmScript.js")
